@@ -1,5 +1,4 @@
 flask
 requests
-textblob
-
+google-api-python-client
 
