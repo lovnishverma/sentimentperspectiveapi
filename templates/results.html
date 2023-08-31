@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Lyrics Toxicity Analyzer</title>
+    <title>Lyrics Toxicity Results</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container mt-4">
-        <h1 class="text-center">Lyrics Toxicity Analyzer</h1>
+        <h1 class="text-center">Lyrics Toxicity Results</h1>
         
-        <form action="/sort-lyrics" method="post">
-            <div class="form-group">
-                <label for="lyrics">Enter lyrics:</label>
-                <textarea class="form-control" name="lyrics" rows="10" placeholder="Enter lyrics here"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Analyze</button>
-        </form>
+        <ul class="list-group mt-4">
+            {% for lyric in sorted_lyrics %}
+            <li class="list-group-item">
+                <h5>{{ lyric.text }}</h5>
+                <p class="mb-0"><strong>Toxicity:</strong> {{ lyric.toxicity * 100 }}%</p>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
     
     <!-- Include Bootstrap JS -->

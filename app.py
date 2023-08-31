@@ -29,7 +29,10 @@ def sort_lyrics():
             toxicity_score = response["attributeScores"]["TOXICITY"]["summaryScore"]["value"]
             lyrics_scored.append({"text": line, "toxicity": toxicity_score})
     
-    return jsonify(lyrics_scored)
+    # Sort the lyrics by toxicity in ascending order
+    sorted_lyrics = sorted(lyrics_scored, key=lambda x: x["toxicity"])
+    
+    return render_template("results.html", sorted_lyrics=sorted_lyrics)
 
 if __name__ == "__main__":
     app.run(debug=True)
