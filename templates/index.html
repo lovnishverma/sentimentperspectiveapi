@@ -1,68 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Web Scraping Example</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            margin-bottom: 20px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            margin-bottom: 5px;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-        input[type="submit"] {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Sentiment Analysis</title>
 </head>
 <body>
-    <div class="container">
-      <center> <h1>Web Scraping Example</h1></center>
-        <form method="post">
-            <label for="url">URL:</label>
-            <input type="text" id="url" name="url" value="{{ url }}" required>
-            <label for="tag">Tag:</label>
-            <input type="text" id="tag" name="tag" value="{{ tag }}" required>
-            <center><input type="submit" value="Scrape"></center>
-        </form>
-        {% if headings %}
-        <h2>Scraped Headings</h2>
-        <ul>
-            {% for heading in headings %}
-            <li>{{ heading }}</li>
-            {% endfor %}
-        </ul>
-        {% elif 'error' in headings %}
-        <p style="color: red;">Error: {{ headings.error }}</p>
-        {% endif %}
-    </div>
+    <h1>Sentiment Analysis</h1>
+    <form action="/analyze" method="post">
+        <textarea name="text" rows="4" cols="50"></textarea>
+        <br>
+        <input type="submit" value="Analyze">
+    </form>
+    
+    {% if text %}
+    <h2>Input Text:</h2>
+    <p>{{ text }}</p>
+    <h2>Sentiment:</h2>
+    <p>{{ sentiment }}</p>
+    {% endif %}
 </body>
 </html>
